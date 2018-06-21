@@ -1,13 +1,9 @@
 var express = require('express')
 var wines = require('./routes/wines')
 var app = express()
+var Bp = require('body-parser');
 
-app.configure(function () {
-    app.set('port', process.env.PORT || 2345);
-    app.use(express.logger('dev'));
-    app.use(express.bodyParser()),
-    app.use(express.static(path.join(__dirname, 'public')));
-});
+app.use(Bp.urlencoded({extended: false}));
 
 app.get('/wines', wines.findAll);
 app.get('/wines/:id', wines.findById);

@@ -7,17 +7,17 @@ var Server = mongo.Server,
 var server = new Server('localhost', 27017, {auto_reconnect: true});
 db = new Db('winedb', server);
 
-db.open(function(err, db) {
-    if(!err) {
-        console.log("Connected to 'winedb' database");
-        db.collection('wines', {strict:true}, function(err, collection) {
-            if (err) {
-                console.log("The 'wines' collection doesn't exist. Creating it with sample data...");
-                populateDB();
-            }
-        });
-    }
-});
+// db.select(function(err, db) {
+//     if(!err) {
+//         console.log("Connected to 'winedb' database");
+//         db.collection('wines', {strict:true}, function(err, collection) {
+//             if (err) {
+//                 console.log("The 'wines' collection doesn't exist. Creating it with sample data...");
+//                 populateDB();
+//             }
+//         });
+//     }
+// });
 
 exports.findById = function(req, res) {
     var id = req.params.id;
